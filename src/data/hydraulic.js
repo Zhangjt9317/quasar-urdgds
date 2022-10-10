@@ -1,0 +1,1 @@
+const friction_factor = [];

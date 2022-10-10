@@ -1,59 +1,91 @@
 <template>
-  <q-page class="column flex-center">
-    <q-knob
-      v-model="count"
-      :min="min"
-      :max="max"
-      size="80px"
-      show-value
-      :thickness="0.13"
-      color="primary"
-      track-color="dark"
-    >
-      <q-avatar size="75px">
-        <img alt="Quasar logo" src="~assets/quasar-logo-inner.svg" />
-      </q-avatar>
-    </q-knob>
+  <div>
+    <q-splitter v-model="splitterModel" style="">
+      <template v-slot:before>
+        <q-tabs v-model="tab" vertical class="text-teal">
+          <q-tab name="mails" icon="mail" label="Mails" />
+          <q-tab name="alarms" icon="alarm" label="Alarms" />
+          <q-tab name="movies" icon="movie" label="Movies" />
+        </q-tabs>
+      </template>
 
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 140px"
-    />
+      <template v-slot:after>
+        <q-tab-panels
+          v-model="tab"
+          animated
+          swipeable
+          vertical
+          transition-prev="jump-up"
+          transition-next="jump-up"
+        >
+          <q-tab-panel name="mails">
+            <div class="text-h4 q-mb-md">Mails</div>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+              praesentium cumque magnam odio iure quidem, quod illum numquam
+              possimus obcaecati commodi minima assumenda consectetur culpa fuga
+              nulla ullam. In, libero.
+            </p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+              praesentium cumque magnam odio iure quidem, quod illum numquam
+              possimus obcaecati commodi minima assumenda consectetur culpa fuga
+              nulla ullam. In, libero.
+            </p>
+          </q-tab-panel>
 
-    <div class="q-mt-xl">
-      <q-btn
-        color="primary"
-        dense
-        round
-        label="-"
-        :disable="count === min"
-        @click="count--"
-      />
+          <q-tab-panel name="alarms">
+            <div class="text-h4 q-mb-md">Alarms</div>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+              praesentium cumque magnam odio iure quidem, quod illum numquam
+              possimus obcaecati commodi minima assumenda consectetur culpa fuga
+              nulla ullam. In, libero.
+            </p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+              praesentium cumque magnam odio iure quidem, quod illum numquam
+              possimus obcaecati commodi minima assumenda consectetur culpa fuga
+              nulla ullam. In, libero.
+            </p>
+          </q-tab-panel>
 
-      <span class="q-mx-md text-bold">{{ count }}</span>
-
-      <q-btn
-        color="primary"
-        dense
-        round
-        label="+"
-        :disable="count === max"
-        @click="count++"
-      />
-    </div>
-
-    <div class="q-mt-md" style="width: 200px">
-      <q-slider v-model="count" :min="min" :max="max" />
-    </div>
-  </q-page>
+          <q-tab-panel name="movies">
+            <div class="text-h4 q-mb-md">Movies</div>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+              praesentium cumque magnam odio iure quidem, quod illum numquam
+              possimus obcaecati commodi minima assumenda consectetur culpa fuga
+              nulla ullam. In, libero.
+            </p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+              praesentium cumque magnam odio iure quidem, quod illum numquam
+              possimus obcaecati commodi minima assumenda consectetur culpa fuga
+              nulla ullam. In, libero.
+            </p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+              praesentium cumque magnam odio iure quidem, quod illum numquam
+              possimus obcaecati commodi minima assumenda consectetur culpa fuga
+              nulla ullam. In, libero.
+            </p>
+          </q-tab-panel>
+        </q-tab-panels>
+      </template>
+    </q-splitter>
+  </div>
 </template>
 
-<script setup>
+<script>
 import { ref } from 'vue';
 
-const count = ref(0);
-
-const min = -5;
-const max = 5;
+export default {
+  setup() {
+    return {
+      tab: ref('mails'),
+      splitterModel: ref(20),
+    };
+  },
+};
 </script>
